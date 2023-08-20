@@ -2,7 +2,7 @@ name: Test In All PHP Versions
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
 
 jobs:
   phpunit:
