@@ -14,7 +14,7 @@
         "illuminate/collections": "^10.17"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "^10.0"
     },
     "version": "1.0.0",
     "license": "MIT",

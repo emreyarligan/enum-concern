@@ -1,0 +1,44 @@
+name: Test In All PHP Versions
+
+on:
+  push:
+    branches:
+      - "*" # matches every branch that doesn't contain a '/'
+      - "*/*" # matches every branch containing a single '/'
+      - "**" # matches every branch
+      - "!main" # excludes master
+
+jobs:
+  run_tests:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version:
+          #- "7.4"
+          #- "8.0"
+          - "8.1"
+          - "8.2"
+        dependency-versions:
+          - "lowest"
+          - "highest"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: none
+
+      - name: Install composer dependencies
+        uses: ramsey/composer-install@v2
+        with:
+          dependency-versions: ${{ matrix.dependency-versions }}
+
+      - name: Run PHPUnit
+        run: composer test
