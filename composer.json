@@ -1,0 +1,40 @@
+{
+    "name": "emreyarligan/enum-concern",
+    "description": "A PHP package for effortless Enumeration handling with Laravel Collections 📦 ✨",
+    "keywords": [
+        "laravel",
+        "enum",
+        "concern",
+        "enumeration"
+    ],
+    "homepage": "https://github.com/emreyarligan/enum-concern",
+    "type": "library",
+    "require": {
+        "php":">=8.1",
+        "illuminate/collections": "^10.17"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "version": "1.0.0",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "EmreYarligan\\EnumConcern\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EmreYarligan\\EnumConcern\\Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "Emre Yarlıgan"
+        }
+    ],
+    "minimum-stability": "stable",
+    "scripts": {
+        "test": "./vendor/bin/phpunit tests"
+    }
+}
