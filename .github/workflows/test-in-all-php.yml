@@ -1,12 +1,6 @@
 name: Test In All PHP Versions
 
-on:
-  push:
-    branches:
-      - "*" # matches every branch that doesn't contain a '/'
-      - "*/*" # matches every branch containing a single '/'
-      - "**" # matches every branch
-      - "!main" # excludes master
+on: [push, pull_request]
 
 jobs:
   run_tests:
