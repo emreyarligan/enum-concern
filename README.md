@@ -52,6 +52,8 @@ enum TestEnum: string
 | `exceptAsArray`       | Get a subset of the values as an array, excluding the specified cases (keys / names).         | `cases`, `method = ''` (optional)                           | `array`     |
 | `first`               | Get the first value in the Enum.                                                              | `method = ''` (optional)                                   | `mixed`     |
 | `last`                | Get the last value in the Enum.                                                               | `method = ''` (optional)                                   | `mixed`     |
+| `fromValue`           | Create an Enum object from a string value.                                                    | `value`                                                    | `object`     |
+| `valueNamePairs`      | Get the key-value pairs of value and transformed value (if a method is specified).            | `method = ''` (optional)                                   | `Collection` |
 
 <hr/>
 
@@ -1058,6 +1060,32 @@ Fruits::last('names');
 // Result: "Apple"
 ```
 <hr />
+
+### fromValue() Method
+Create an Enum object from a string value.
+```php
+$greenEnum = Color::fromValue("Green");
+// Result:
+// App\Enums\Color {
+//   +name: "GREEN"
+//   +value: "Green"
+// }
+```
+If the value "Green" exists in the `Color` Enum, this method will return the corresponding Enum object. If not, it will throw an `InvalidArgumentException`.
+
+### valueNamePairs() Method
+Get the key-value pairs of value and transformed value (if a method is specified).
+
+```php
+$pairs = Color::valueNamePairs('translateToTurkish');
+// Result:
+// Illuminate\Support\Collection {
+//    "Red" => "Kırmızı",
+//    "Green" => "Yeşil",
+//    "Blue" => "Mavi"
+// }
+```
+<ht />
 
 ## Tests
 ```bash
