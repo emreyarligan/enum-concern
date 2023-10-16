@@ -73,7 +73,7 @@ trait EnumConcern
      * @param string $method (optional) If provided, the specified method will be called on each value before searching.
      * @return bool|string Returns the case (key / name) for the given value, or false if not found.
      */
-    public static function caseByValue(string $case, string $method = '') : string|bool
+    public static function caseByValue(?string $case, string $method = '') : string|bool
     {
         return self::all($method)->search($case);
     }
