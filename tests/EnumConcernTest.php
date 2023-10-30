@@ -602,7 +602,59 @@ class EnumConcernTest extends TestCase {
         $this->assertEquals(Fruits::last('emojis'),'🍎');
     }
 
+    public function testFromValueValid(): void
+    {
+        $this->assertEquals(Fruits::fromValue(1)->value, 1); 
+    }
 
+    public function testFromValueInvalid(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage("The value '100' does not match any existing elements in the Enum.");
+        Fruits::fromValue(100);
+    }
+
+    public function testValueNamePairsWithoutMethod(): void
+    {
+        $expected = collect([
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5,
+            6 => 6,
+            7 => 7,
+        ]);
+        $this->assertEquals(Fruits::valueNamePairs(), $expected);
+    }
+
+    public function testValueNamePairsWithMethod(): void
+    {
+        $expected = collect([
+            1 => "🍌",
+            2 => "🍓",
+            3 => "🍒",
+            4 => "🍉",
+            5 => "🍊",
+            6 => "🥝",
+            7 => "🍎",
+        ]);
+        $this->assertEquals(Fruits::valueNamePairs('emojis'), $expected);
+    }
+
+    public function testValueNamePairsWithInvalidMethod(): void
+    {
+        $expected = collect([
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5,
+            6 => 6,
+            7 => 7,
+        ]);
+        $this->assertEquals(Fruits::valueNamePairs('invalidMethod'), $expected);
+    }
 }
 
 enum Fruits: int

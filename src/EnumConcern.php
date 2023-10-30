@@ -252,4 +252,37 @@ trait EnumConcern
     {
         return self::all($method)->last();
     }
+
+    /**
+     * Create an Enum object from a string value.
+     *
+     * @param string $value The value to match with the existing elements of the Enum.
+     * @return object Returns an Enum object if the value matches an existing element.
+     * @throws InvalidArgumentException if the value does not match any existing elements.
+     */
+    public static function fromValue(string $value) : object
+    {
+        if (self::has($value)) {
+            return self::from($value);
+        }
+
+        throw new \InvalidArgumentException("The value '{$value}' does not match any existing elements in the Enum.");
+    }
+
+    /**
+     * Get the key-value pairs of value and transformed value (if a method is specified).
+     *
+     * @param string $method (optional) If provided, the specified method will be called on each value.
+     * @return Collection Returns a Collection containing the key-value pairs.
+     */
+    public static function valueNamePairs(string $method = '') : Collection
+    {
+        if (!method_exists(self::class, $method)) {
+            return collect(self::cases())->pluck('value', 'value');
+        }
+
+        return collect(self::cases())->mapWithKeys(function ($item) use ($method) {
+            return [$item->value => self::from($item->value)->$method()];
+        });
+    }
 }
