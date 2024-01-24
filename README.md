@@ -54,7 +54,10 @@ enum TestEnum: string
 | `last`                | Get the last value in the Enum.                                                               | `method = ''` (optional)                                   | `mixed`     |
 | `fromValue`           | Create an Enum object from a string value.                                                    | `value`                                                    | `object`     |
 | `valueNamePairs`      | Get the key-value pairs of value and transformed value (if a method is specified).            | `method = ''` (optional)                                   | `Collection` |
-
+| `is`                  | Check if the Enum object is equal to the given object.                                          | `object`                                                    | `bool`      |
+| `isNot`               | Check if the Enum object is not equal to the given object.                                      | `object`                                                    | `bool`      |
+| `isAny`               | Check if the Enum object is equal to any of the given objects.                                  | `objects`                                                   | `bool`      |
+| `isNotAny`            | Check if the Enum object is not equal to any of the given objects.                              | `objects`                                                   | `bool`      |
 <hr/>
 
 ## Basic Usage
@@ -1085,7 +1088,59 @@ $pairs = Color::valueNamePairs('translateToTurkish');
 //    "Blue" => "Mavi"
 // }
 ```
-<ht />
+<hr />
+
+### is() Method
+Checks if the Enum value is equal to the given value.
+
+```php
+  $enum = Fruits::BANANA;
+
+  $enum->is(Fruits::BANANA);
+  // Result: true
+
+  $enum->is(Fruits::APPLE);
+  // Result: false
+```
+
+### isNot() Method
+Checks if the Enum value is not equal to the given value.
+
+```php
+  $enum = Fruits::BANANA;
+
+  $enum->isNot(Fruits::BANANA);
+  // Result: false
+
+  $enum->isNot(Fruits::APPLE);
+  // Result: true
+```
+
+### isAny() Method
+Checks if the Enum value is equal to any of the given values.
+
+```php
+  $enum = Fruits::BANANA;
+
+  $enum->isAny(Fruits::BANANA, Fruits::APPLE);
+  // Result: true
+
+  $enum->isAny(Fruits::APPLE, Fruits::KIWI);
+  // Result: false
+```
+
+### isNotAny() Method
+Checks if the Enum value is not equal to any of the given values.
+
+```php
+  $enum = Fruits::BANANA;
+
+  $enum->isNotAny(Fruits::BANANA, Fruits::APPLE);
+  // Result: false
+
+  $enum->isNotAny(Fruits::APPLE, Fruits::KIWI);
+  // Result: true
+```
 
 ## Tests
 ```bash
