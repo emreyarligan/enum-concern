@@ -655,6 +655,34 @@ class EnumConcernTest extends TestCase {
         ]);
         $this->assertEquals(Fruits::valueNamePairs('invalidMethod'), $expected);
     }
+
+    public function testIs(): void
+    {
+        $enum = Fruits::BANANA;
+
+        $this->assertTrue($enum->is(Fruits::BANANA));
+    }
+
+    public function testIsNot(): void
+    {
+        $enum = Fruits::BANANA;
+
+        $this->assertFalse($enum->isNot(Fruits::BANANA));
+    }
+
+    public function testisAny(): void
+    {
+        $enum = Fruits::BANANA;
+
+        $this->assertTrue($enum->isAny(Fruits::BANANA, Fruits::STRAWBERRY));
+    }
+
+    public function testIsNotAny(): void
+    {
+        $enum = Fruits::BANANA;
+
+        $this->assertFalse($enum->isNotAny(Fruits::BANANA, Fruits::STRAWBERRY));
+    }
 }
 
 enum Fruits: int

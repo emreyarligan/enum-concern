@@ -2,6 +2,7 @@
 namespace EmreYarligan\EnumConcern;
 
 use Illuminate\Support\Collection;
+use UnitEnum;
 
 trait EnumConcern
 {
@@ -284,5 +285,47 @@ trait EnumConcern
         return collect(self::cases())->mapWithKeys(function ($item) use ($method) {
             return [$item->value => self::from($item->value)->$method()];
         });
+    }
+
+    /**
+     * Check if the current instance is equal to the given UnitEnum.
+     *
+     * @param UnitEnum $enum The UnitEnum to compare with.
+     * @return bool Returns true if the EnumConcern instance is equal to the given UnitEnum, false otherwise.
+     */
+    public function is(UnitEnum $enum) : bool
+    {
+        return $this === $enum;
+    }
+    
+    /**
+     * Check if the given UnitEnum is not equal to the current instance.
+     *
+     * @param UnitEnum $enum The UnitEnum to compare with.
+     * @return bool Returns true if the UnitEnum is not equal to the current instance, false otherwise.
+     */
+    public function isNot(UnitEnum $enum) : bool
+    {
+        return ! $this->is($enum);
+    }
+
+    /**
+     * Check if the current enum value is present in the given array of enums.
+     *
+     * @param mixed ...$enums The array of enums to check against.
+     * @return bool Returns true if the current enum value is present in the array, false otherwise.
+     */
+    public function isAny(...$enums) : bool {
+        return in_array($this, $enums);
+    }
+
+    /**
+     * Checks if the current enum value is not in the given array of enums.
+     *
+     * @param mixed ...$enums The array of enums to check against.
+     * @return bool Returns true if the current enum value is not in the given array of enums, false otherwise.
+     */
+    public function isNotAny(...$enums) : bool {
+        return ! $this->isAny(...$enums);
     }
 }
