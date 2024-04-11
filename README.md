@@ -3,6 +3,11 @@
 EnumConcern is a PHP package designed to enhance the usage of PHP's Enum feature with a set of convenient methods. This package includes a Trait file that enables easy handling of Enums.
 
 Powered by [Laravel Collections](https://laravel.com/docs/10.x/collections) to make you feel at home. 🧡
+
+
+[![Latest Version](https://img.shields.io/packagist/v/emreyarligan/enum-concern.svg?style=flat-square)](https://packagist.org/packages/emreyarligan/enum-concern)
+[![Total Downloads](https://img.shields.io/packagist/dt/emreyarligan/enum-concern.svg?style=flat-square)](https://packagist.org/packages/emreyarligan/enum-concern)
+
 <hr/>
 
 ## Installation
