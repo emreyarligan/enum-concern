@@ -12,6 +12,7 @@ trait EnumConcern
      *
      * @param string $method (optional) If provided, the specified method will be called on each value.
      * @return Collection Returns a Collection containing the values.
+     * @throws EnumMethodNotFoundException if the specified method does not exist in the Enum.
      */
     public static function all(string $method = '') : Collection
     {
