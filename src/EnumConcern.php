@@ -15,7 +15,7 @@ trait EnumConcern
      */
     public static function all(string $method = '') : Collection
     {
-        if($method != '' && !method_exists(self::class,$method))
+        if ($method != '' && ! method_exists(self::class, $method))
             throw new EnumMethodNotFoundException("The method '{$method}' does not exist in the '".self::class."' enum.");
 
          if (!method_exists(self::class,$method))
