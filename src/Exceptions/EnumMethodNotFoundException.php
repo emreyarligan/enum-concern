@@ -2,9 +2,9 @@
 
 namespace EmreYarligan\EnumConcern\Exceptions;
 
-use BadFunctionCallException;
+use BadMethodCallException;
 
-final class EnumMethodNotFoundException extends BadFunctionCallException
+final class EnumMethodNotFoundException extends BadMethodCallException
 {
 
 }
