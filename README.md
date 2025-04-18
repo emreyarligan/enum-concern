@@ -33,36 +33,36 @@ enum TestEnum: string
 <hr/>
 
 ## Methods
-| Method                | Description                                                                                   | Parameters                                                 | Return Type |
-|-----------------------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------|-------------|
-| `all`                 | Get all the values as a Collection.                                                           | `method = ''` (optional)                                   | `Collection` |
-| `allAsArray`          | Get all the values as an array.                                                               | `method = ''` (optional)                                   | `array`     |
-| `has`                 | Check if a specific value exists.                                                             | `value`, `method = ''` (optional)                          | `bool`      |
-| `caseExists`          | Check if a specific case (key / name) exists.                                                 | `value`, `method = ''` (optional)                          | `bool`      |
-| `allCasesExists`      | Check if all the given cases (keys / names) exist.                                            | `cases`, `method = ''` (optional)                           | `bool`      |
-| `anyCaseExists`       | Check if any of the given cases (keys / names) exist.                                         | `cases`, `method = ''` (optional)                           | `bool`      |
-| `caseByValue`         | Get the case (key / name) for a specific value.                                               | `value`, `method = ''` (optional)                          | `string`     |
-| `toJson`              | Convert all the values to a JSON string.                                                      | `method = ''` (optional),`jsonEncodeOption` (optional) | `string`    |
-| `toArray`             | Convert all the values to an array.                                                           | `method = ''` (optional)                                   | `array`     |
-| `toKeyValueCollection` | Convert all the values to a key-value format as a Collection.                                 | `method = ''` (optional)                                   | `Collection` |
-| `toKeyValueArray`     | Convert all the values to a key-value format as an array.                                     | `method = ''` (optional)                                   | `array`     |
-| `randomValue`         | Get a random value from the collection of values.                                             | `method = ''` (optional)                                   | `mixed`     |
-| `randomCase`          | Get a random case (key / name) from the collection of values.                                 | None                                                       | `string`    |
-| `casesCollection`     | Get all the cases (keys / names) of the Enum as a Collection.                                 | None                                                       | `Collection` |
-| `casesArray`          | Get all the cases (keys / names) of the Enum as an array.                                     | None                                                       | `array`     |
-| `allToArray`          | Get all the values as an array. (Alias for `toArray` method)                                  | `method = ''` (optional)                                   | `array`     |
-| `only`                | Get a subset of the values as a Collection, only including the specified cases (keys / names). | `cases`,`method = ''` (optional)                            | `Collection` |
-| `onlyAsArray`         | Get a subset of the values as an array, only including the specified cases (keys / names).    | `cases`, `method = ''` (optional)                           | `array`     |
-| `except`              | Get a subset of the values as a Collection, excluding the specified cases (keys / names).     | `cases`, `method = ''` (optional)                           | `Collection` |
-| `exceptAsArray`       | Get a subset of the values as an array, excluding the specified cases (keys / names).         | `cases`, `method = ''` (optional)                           | `array`     |
-| `first`               | Get the first value in the Enum.                                                              | `method = ''` (optional)                                   | `mixed`     |
-| `last`                | Get the last value in the Enum.                                                               | `method = ''` (optional)                                   | `mixed`     |
-| `fromValue`           | Create an Enum object from a string value.                                                    | `value`                                                    | `object`     |
-| `valueNamePairs`      | Get the key-value pairs of value and transformed value (if a method is specified).            | `method = ''` (optional)                                   | `Collection` |
-| `is`                  | Check if the Enum object is equal to the given object.                                          | `object`                                                    | `bool`      |
-| `isNot`               | Check if the Enum object is not equal to the given object.                                      | `object`                                                    | `bool`      |
-| `isAny`               | Check if the Enum object is equal to any of the given objects.                                  | `objects`                                                   | `bool`      |
-| `isNotAny`            | Check if the Enum object is not equal to any of the given objects.                              | `objects`                                                   | `bool`      |
+| Method                 | Description                                                                                    | Parameters                                             | Return Type  |
+|------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------|--------------|
+| `all`                  | Get all the values as a Collection.                                                            | `method = ''` (optional)                               | `Collection` |
+| `allAsArray`           | Get all the values as an array.                                                                | `method = ''` (optional)                               | `array`      |
+| `has`                  | Check if a specific value exists.                                                              | `value`, `method = ''` (optional)                      | `bool`       |
+| `caseExists`           | Check if a specific case (key / name) exists.                                                  | `value`, `method = ''` (optional)                      | `bool`       |
+| `allCasesExists`       | Check if all the given cases (keys / names) exist.                                             | `cases`, `method = ''` (optional)                      | `bool`       |
+| `anyCaseExists`        | Check if any of the given cases (keys / names) exist.                                          | `cases`, `method = ''` (optional)                      | `bool`       |
+| `caseByValue`          | Get the case (key / name) for a specific value.                                                | `value`, `method = ''` (optional)                      | `string`     |
+| `toJson`               | Convert all the values to a JSON string.                                                       | `method = ''` (optional),`jsonEncodeOption` (optional) | `string`     |
+| `toArray`              | Convert all the values to an array.                                                            | `method = ''` (optional)                               | `array`      |
+| `toKeyValueCollection` | Convert all the values to a key-value format as a Collection.                                  | `method = ''` (optional)                               | `Collection` |
+| `toKeyValueArray`      | Convert all the values to a key-value format as an array.                                      | `method = ''` (optional)                               | `array`      |
+| `randomValue`          | Get a random value from the collection of values.                                              | `method = ''` (optional)                               | `mixed`      |
+| `randomCase`           | Get a random case (key / name) from the collection of values.                                  | None                                                   | `string`     |
+| `casesCollection`      | Get all the cases (keys / names) of the Enum as a Collection.                                  | None                                                   | `Collection` |
+| `casesArray`           | Get all the cases (keys / names) of the Enum as an array.                                      | None                                                   | `array`      |
+| `allToArray`           | Get all the values as an array. (Alias for `toArray` method)                                   | `method = ''` (optional)                               | `array`      |
+| `only`                 | Get a subset of the values as a Collection, only including the specified cases (keys / names). | `cases`,`method = ''` (optional)                       | `Collection` |
+| `onlyAsArray`          | Get a subset of the values as an array, only including the specified cases (keys / names).     | `cases`, `method = ''` (optional)                      | `array`      |
+| `except`               | Get a subset of the values as a Collection, excluding the specified cases (keys / names).      | `cases`, `method = ''` (optional)                      | `Collection` |
+| `exceptAsArray`        | Get a subset of the values as an array, excluding the specified cases (keys / names).          | `cases`, `method = ''` (optional)                      | `array`      |
+| `first`                | Get the first value in the Enum.                                                               | `method = ''` (optional)                               | `mixed`      |
+| `last`                 | Get the last value in the Enum.                                                                | `method = ''` (optional)                               | `mixed`      |
+| `fromValue`            | Create an Enum object from a string value.                                                     | `value`                                                | `object`     |
+| `valueNamePairs`       | Get the key-value pairs of value and transformed value (if a method is specified).             | `method = ''` (optional)                               | `Collection` |
+| `is`                   | Check if the Enum object is equal to the given object.                                         | `object`                                               | `bool`       |
+| `isNot`                | Check if the Enum object is not equal to the given object.                                     | `object`                                               | `bool`       |
+| `isAny`                | Check if the Enum object is equal to any of the given objects.                                 | `objects`                                              | `bool`       |
+| `isNotAny`             | Check if the Enum object is not equal to any of the given objects.                             | `objects`                                              | `bool`       |
 <hr/>
 
 ## Basic Usage
