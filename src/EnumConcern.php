@@ -257,14 +257,19 @@ trait EnumConcern
     /**
      * Create an Enum object from a string value.
      *
-     * @param string $value The value to match with the existing elements of the Enum.
-     * @return object Returns an Enum object if the value matches an existing element.
+     * @param string|int $value The value to match with the existing elements of the Enum.
+     * @param string $method (optional) If provided, the specified method will be called on each value.
+     * @return self Returns an Enum object if the value matches an existing element.
      * @throws InvalidArgumentException if the value does not match any existing elements.
      */
-    public static function fromValue(string $value) : object
+    public static function fromValue(string|int $value, string $method = '') : self
     {
-        if (self::has($value)) {
-            return self::from($value);
+        if (self::has($value, $method)) {
+            return collect(self::cases())->first(function (self $case) use ($value, $method) {
+                return $method
+                    ? $value === $case->$method()
+                    : $value === $case->value;
+            });
         }
 
         throw new \InvalidArgumentException("The value '{$value}' does not match any existing elements in the Enum.");
