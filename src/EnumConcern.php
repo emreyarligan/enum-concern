@@ -1,6 +1,7 @@
 <?php
 namespace EmreYarligan\EnumConcern;
 
+use EmreYarligan\EnumConcern\Exceptions\EnumMethodNotFoundException;
 use Illuminate\Support\Collection;
 use UnitEnum;
 
@@ -11,9 +12,13 @@ trait EnumConcern
      *
      * @param string $method (optional) If provided, the specified method will be called on each value.
      * @return Collection Returns a Collection containing the values.
+     * @throws EnumMethodNotFoundException if the specified method does not exist in the Enum.
      */
     public static function all(string $method = '') : Collection
     {
+        if ($method != '' && ! method_exists(self::class, $method))
+            throw new EnumMethodNotFoundException("The method '{$method}' does not exist in the '".self::class."' enum.");
+
          if (!method_exists(self::class,$method))
              return collect(self::cases())->pluck('value','name');
 

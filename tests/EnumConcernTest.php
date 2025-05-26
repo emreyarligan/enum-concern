@@ -2,6 +2,7 @@
 
 namespace EmreYarligan\EnumConcern\Tests;
 
+use EmreYarligan\EnumConcern\Exceptions\EnumMethodNotFoundException;
 use PHPUnit\Framework\TestCase;
 use EmreYarligan\EnumConcern\EnumConcern;
 
@@ -682,6 +683,12 @@ class EnumConcernTest extends TestCase {
         $enum = Fruits::BANANA;
 
         $this->assertFalse($enum->isNotAny(Fruits::BANANA, Fruits::STRAWBERRY));
+    }
+
+    public function testMethodNotFound(): void
+    {
+        $this->expectException(EnumMethodNotFoundException::class);
+        Fruits::all('nonExistentMethod');
     }
 }
 
