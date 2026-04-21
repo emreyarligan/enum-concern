@@ -59,6 +59,7 @@ enum TestEnum: string
 | `last`                 | Get the last value in the Enum.                                                                | `method = ''` (optional)                               | `mixed`      |
 | `fromValue`            | Create an Enum object from a string value.                                                     | `value`                                                | `object`     |
 | `valueNamePairs`       | Get the key-value pairs of value and transformed value (if a method is specified).             | `method = ''` (optional)                               | `Collection` |
+| `rule`                 | Get a Laravel validation rule instance for the Enum.                                           | None                                                   | `Enum`       |
 | `is`                   | Check if the Enum object is equal to the given object.                                         | `object`                                               | `bool`       |
 | `isNot`                | Check if the Enum object is not equal to the given object.                                     | `object`                                               | `bool`       |
 | `isAny`                | Check if the Enum object is equal to any of the given objects.                                 | `objects`                                              | `bool`       |
@@ -1093,6 +1094,33 @@ $pairs = Color::valueNamePairs('translateToTurkish');
 //    "Blue" => "Mavi"
 // }
 ```
+
+### rule() Method
+Get a Laravel validation rule instance for the Enum. This provides a fluent way to define validation rules in your Form Requests or Controllers, allowing you to use Laravel's built-in Enum validation features easily.
+
+**Before (Standard Laravel):**
+```php
+use Illuminate\Validation\Rules\Enum;
+
+$request->validate([
+    'fruit_id' => [new Enum(Fruits::class)],
+]);
+```
+
+**After (With EnumConcern):**
+```php
+// Simple usage to validate against all cases:
+$request->validate([
+    'status' => [Fruits::rule()],
+]);
+
+// Or use fluent methods to restrict specific cases:
+$request->validate([
+    'fruit_id' => [Fruits::rule()->only([Fruits::BANANA, Fruits::APPLE])],
+]);
+```
+Note: This method returns an instance of \Illuminate\Validation\Rules\Enum.
+
 <hr />
 
 ### is() Method

@@ -3,6 +3,7 @@ namespace EmreYarligan\EnumConcern;
 
 use EmreYarligan\EnumConcern\Exceptions\EnumMethodNotFoundException;
 use Illuminate\Support\Collection;
+use Illuminate\Validation\Rules\Enum;
 use UnitEnum;
 
 trait EnumConcern
@@ -295,6 +296,16 @@ trait EnumConcern
         return collect(self::cases())->mapWithKeys(function ($item) use ($method) {
             return [$item->value => self::from($item->value)->$method()];
         });
+    }
+
+    /**
+     * Get a validation rule instance for the Enum.
+     *
+     * @return \Illuminate\Validation\Rules\Enum
+     */
+    public static function rule(): Enum
+    {
+        return new Enum(static::class);
     }
 
     /**

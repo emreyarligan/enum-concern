@@ -702,6 +702,43 @@ class EnumConcernTest extends TestCase {
         $this->expectException(EnumMethodNotFoundException::class);
         Fruits::all('nonExistentMethod');
     }
+
+    /**
+     * @throws \ReflectionException
+     */
+    public function testRule(): void
+    {
+        $rule = Fruits::rule();
+
+        $this->assertInstanceOf(\Illuminate\Validation\Rules\Enum::class, $rule);
+
+        $reflection = new \ReflectionProperty($rule, 'type');
+
+        $this->assertEquals(
+            Fruits::class,
+            $reflection->getValue($rule)
+        );
+    }
+
+    /**
+     * @throws \ReflectionException
+     */
+    public function testRuleWithOnly(): void
+    {
+        // Check if the only() method exists in the current version of Laravel's Enum rule
+        if (!method_exists(\Illuminate\Validation\Rules\Enum::class, 'only')) {
+            $this->markTestSkipped('The Enum::only() method is not available in this version of Laravel.');
+        }
+
+        $cases = [Fruits::BANANA, Fruits::APPLE];
+        $rule = Fruits::rule()->only($cases);
+
+        $typeRef = new \ReflectionProperty($rule, 'type');
+        $this->assertEquals(Fruits::class, $typeRef->getValue($rule));
+
+        $onlyRef = new \ReflectionProperty($rule, 'only');
+        $this->assertEquals($cases, $onlyRef->getValue($rule));
+    }
 }
 
 enum Fruits: int
